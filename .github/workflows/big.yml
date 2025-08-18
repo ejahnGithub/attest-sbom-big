@@ -1,5 +1,4 @@
 name: Big SBOM Test
-
 on:
   workflow_dispatch:
     inputs:
@@ -8,9 +7,7 @@ on:
         type: string
         required: true
         default: 16
-
 permissions: {}
-
 jobs:
   attest-sbom:
     runs-on: ubuntu-latest
@@ -18,7 +15,6 @@ jobs:
       contents: read
       id-token: write
       attestations: write
-
     steps:
       - name: Checkout
         id: checkout
@@ -28,7 +24,69 @@ jobs:
           dd if=/dev/zero of=output.dat bs=${{ inputs.size }}M count=1
           cat output.dat | base64 > payload.dat
           jq --null-input --rawfile payload payload.dat '{"spdxVersion":"SPDX-2.3","SPDXID":"SPDXRef-DOCUMENT","payload":$payload}' > sbom.json
-      - name: Attest SBOM
+      
+      # Run attestation 6 times with 10-second intervals
+      - name: Attest SBOM - Run 1
+        uses: ./
+        env:
+          INPUT_PRIVATE-SIGNING: 'true'
+        with:
+          subject-digest: 'sha256:7d070f6b64d9bcc530fe99cc21eaaa4b3c364e0b2d367d7735671fa202a03b32'
+          subject-name: 'subject'
+          sbom-path: 'sbom.json'
+      
+      - name: Wait 10 seconds
+        run: sleep 10
+      
+      - name: Attest SBOM - Run 2
+        uses: ./
+        env:
+          INPUT_PRIVATE-SIGNING: 'true'
+        with:
+          subject-digest: 'sha256:7d070f6b64d9bcc530fe99cc21eaaa4b3c364e0b2d367d7735671fa202a03b32'
+          subject-name: 'subject'
+          sbom-path: 'sbom.json'
+      
+      - name: Wait 10 seconds
+        run: sleep 10
+      
+      - name: Attest SBOM - Run 3
+        uses: ./
+        env:
+          INPUT_PRIVATE-SIGNING: 'true'
+        with:
+          subject-digest: 'sha256:7d070f6b64d9bcc530fe99cc21eaaa4b3c364e0b2d367d7735671fa202a03b32'
+          subject-name: 'subject'
+          sbom-path: 'sbom.json'
+      
+      - name: Wait 10 seconds
+        run: sleep 10
+      
+      - name: Attest SBOM - Run 4
+        uses: ./
+        env:
+          INPUT_PRIVATE-SIGNING: 'true'
+        with:
+          subject-digest: 'sha256:7d070f6b64d9bcc530fe99cc21eaaa4b3c364e0b2d367d7735671fa202a03b32'
+          subject-name: 'subject'
+          sbom-path: 'sbom.json'
+      
+      - name: Wait 10 seconds
+        run: sleep 10
+      
+      - name: Attest SBOM - Run 5
+        uses: ./
+        env:
+          INPUT_PRIVATE-SIGNING: 'true'
+        with:
+          subject-digest: 'sha256:7d070f6b64d9bcc530fe99cc21eaaa4b3c364e0b2d367d7735671fa202a03b32'
+          subject-name: 'subject'
+          sbom-path: 'sbom.json'
+      
+      - name: Wait 10 seconds
+        run: sleep 10
+      
+      - name: Attest SBOM - Run 6
         uses: ./
         env:
           INPUT_PRIVATE-SIGNING: 'true'
