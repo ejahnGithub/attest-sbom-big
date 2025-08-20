@@ -35,61 +35,61 @@ jobs:
           subject-name: 'subject'
           sbom-path: 'sbom.json'
       
-      - name: Wait 10 seconds
-        run: sleep 10
+      # - name: Wait 10 seconds
+      #   run: sleep 10
       
-      - name: Attest SBOM - Run 2
-        uses: ./
-        env:
-          INPUT_PRIVATE-SIGNING: 'true'
-        with:
-          subject-digest: 'sha256:7d070f6b64d9bcc530fe99cc21eaaa4b3c364e0b2d367d7735671fa202a03b32'
-          subject-name: 'subject'
-          sbom-path: 'sbom.json'
+      # - name: Attest SBOM - Run 2
+      #   uses: ./
+      #   env:
+      #     INPUT_PRIVATE-SIGNING: 'true'
+      #   with:
+      #     subject-digest: 'sha256:7d070f6b64d9bcc530fe99cc21eaaa4b3c364e0b2d367d7735671fa202a03b32'
+      #     subject-name: 'subject'
+      #     sbom-path: 'sbom.json'
       
-      - name: Wait 10 seconds
-        run: sleep 10
+      # - name: Wait 10 seconds
+      #   run: sleep 10
       
-      - name: Attest SBOM - Run 3
-        uses: ./
-        env:
-          INPUT_PRIVATE-SIGNING: 'true'
-        with:
-          subject-digest: 'sha256:7d070f6b64d9bcc530fe99cc21eaaa4b3c364e0b2d367d7735671fa202a03b32'
-          subject-name: 'subject'
-          sbom-path: 'sbom.json'
+      # - name: Attest SBOM - Run 3
+      #   uses: ./
+      #   env:
+      #     INPUT_PRIVATE-SIGNING: 'true'
+      #   with:
+      #     subject-digest: 'sha256:7d070f6b64d9bcc530fe99cc21eaaa4b3c364e0b2d367d7735671fa202a03b32'
+      #     subject-name: 'subject'
+      #     sbom-path: 'sbom.json'
       
-      - name: Wait 10 seconds
-        run: sleep 10
+      # - name: Wait 10 seconds
+      #   run: sleep 10
       
-      - name: Attest SBOM - Run 4
-        uses: ./
-        env:
-          INPUT_PRIVATE-SIGNING: 'true'
-        with:
-          subject-digest: 'sha256:7d070f6b64d9bcc530fe99cc21eaaa4b3c364e0b2d367d7735671fa202a03b32'
-          subject-name: 'subject'
-          sbom-path: 'sbom.json'
+      # - name: Attest SBOM - Run 4
+      #   uses: ./
+      #   env:
+      #     INPUT_PRIVATE-SIGNING: 'true'
+      #   with:
+      #     subject-digest: 'sha256:7d070f6b64d9bcc530fe99cc21eaaa4b3c364e0b2d367d7735671fa202a03b32'
+      #     subject-name: 'subject'
+      #     sbom-path: 'sbom.json'
       
-      - name: Wait 10 seconds
-        run: sleep 10
+      # - name: Wait 10 seconds
+      #   run: sleep 10
       
-      - name: Attest SBOM - Run 5
-        uses: ./
-        env:
-          INPUT_PRIVATE-SIGNING: 'true'
-        with:
-          subject-digest: 'sha256:7d070f6b64d9bcc530fe99cc21eaaa4b3c364e0b2d367d7735671fa202a03b32'
-          subject-name: 'subject'
-          sbom-path: 'sbom.json'
+      # - name: Attest SBOM - Run 5
+      #   uses: ./
+      #   env:
+      #     INPUT_PRIVATE-SIGNING: 'true'
+      #   with:
+      #     subject-digest: 'sha256:7d070f6b64d9bcc530fe99cc21eaaa4b3c364e0b2d367d7735671fa202a03b32'
+      #     subject-name: 'subject'
+      #     sbom-path: 'sbom.json'
       
-      - name: Wait 10 seconds
-        run: sleep 10
+      # - name: Wait 10 seconds
+      #   run: sleep 10
       
-      - name: Attest SBOM - Run 6
-        uses: ./
-        env:
-          INPUT_PRIVATE-SIGNING: 'true'
+      # - name: Attest SBOM - Run 6
+      #   uses: ./
+      #   env:
+      #     INPUT_PRIVATE-SIGNING: 'true'
         with:
           subject-digest: 'sha256:7d070f6b64d9bcc530fe99cc21eaaa4b3c364e0b2d367d7735671fa202a03b32'
           subject-name: 'subject'
