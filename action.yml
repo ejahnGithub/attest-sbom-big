@@ -52,7 +52,10 @@ inputs:
       The GitHub token used to make authenticated API requests.
     default: ${{ github.token }}
     required: false
-
+  predicate-type:
+    description: >
+      The type of the predicate to generate for the SBOM attestation.
+    required: true
 outputs:
   bundle-path:
     description: 'The path to the file containing the attestation bundle.'
@@ -79,7 +82,7 @@ runs:
         subject-name: ${{ inputs.subject-name }}
         subject-checksums: ${{ inputs.subject-checksums }}
         predicate-type:
-          ${{ steps.generate-sbom-predicate.outputs.predicate-type }}
+          ${{ inputs.predicate-type }}
         predicate-path:
           ${{ steps.generate-sbom-predicate.outputs.predicate-path }}
         push-to-registry: ${{ inputs.push-to-registry }}

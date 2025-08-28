@@ -1,0 +1,42 @@
+name: Big SBOM Test
+on:
+  workflow_dispatch:
+    inputs:
+      size:
+        description: 'predicate length'
+        type: string
+        required: true
+        default: 16
+permissions: {}
+jobs:
+  attest-sbom:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      - name: Construct predicate name base on the size
+        id: construct-predicate-name
+        run: |
+          size='${{ github.event.inputs.size }}'
+          # validate input and fallback to default 16 if invalid
+          if ! [[ "$size" =~ ^[0-9]+$ ]] || [ "$size" -le 0 ]; then
+            echo "Invalid size '$size', using default 16" >&2
+            size=16
+          fi
+          # construct repeated 'a' string of length $size
+          predicate=$(printf 'a%.0s' $(seq 1 "$size"))
+          echo "predicate_name=$predicate" >> "$GITHUB_OUTPUT"
+        shell: bash
+      - name: Generate image SBOM attestation
+        uses: actions/attest-sbom@v2
+        with:
+          subject-name: "Test"
+          subject-digest: "sha256:7d070f6b64d9bcc530fe99cc21eaaa4b3c364e0b2d367d7735671fa202a03b32"
+          sbom-path: ./sbom-image.spdx.json
+          push-to-registry: false
+          predicate-type: ${{ steps.construct-predicate-name.outputs.predicate_name }}
