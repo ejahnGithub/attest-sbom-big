@@ -82,7 +82,7 @@ runs:
         subject-name: ${{ inputs.subject-name }}
         subject-checksums: ${{ inputs.subject-checksums }}
         predicate-type:
-          ${{ inputs.predicate-type }}
+          ${{ steps.generate-sbom-predicate.outputs.predicate-type }}
         predicate-path:
           ${{ steps.generate-sbom-predicate.outputs.predicate-path }}
         push-to-registry: ${{ inputs.push-to-registry }}
